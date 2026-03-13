@@ -14,7 +14,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://instadown.co'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
