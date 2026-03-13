@@ -44,5 +44,9 @@ export async function POST(req: NextRequest) {
   const { imageUrl } = session
   deleteSession(sessionId)
 
-  return NextResponse.json({ imageUrl })
+  // Return a proxy URL so the browser loads the image through our server,
+  // bypassing Instagram CDN hotlink protection (direct browser requests get 403)
+  const proxyUrl = `/api/image?url=${encodeURIComponent(imageUrl)}`
+
+  return NextResponse.json({ imageUrl: proxyUrl, originalUrl: imageUrl })
 }

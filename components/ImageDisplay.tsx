@@ -1,12 +1,13 @@
 'use client'
 
 interface ImageDisplayProps {
-  imageUrl: string
+  imageUrl: string      // proxy URL for display
+  originalUrl: string   // direct CDN URL for download
   title: string
   onReset: () => void
 }
 
-export default function ImageDisplay({ imageUrl, title, onReset }: ImageDisplayProps) {
+export default function ImageDisplay({ imageUrl, originalUrl, title, onReset }: ImageDisplayProps) {
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="w-full overflow-hidden rounded-xl shadow-lg">
@@ -21,7 +22,7 @@ export default function ImageDisplay({ imageUrl, title, onReset }: ImageDisplayP
       <div className="flex w-full gap-3">
         <a
           href={imageUrl}
-          download
+          download="instagram-image.jpg"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition hover:from-purple-600 hover:to-pink-600"

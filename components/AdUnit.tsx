@@ -15,8 +15,6 @@ declare global {
 }
 
 export default function AdUnit({ slot, format = 'auto', className = '' }: AdUnitProps) {
-  const publisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID
-
   useEffect(() => {
     try {
       if (typeof window !== 'undefined' && window.adsbygoogle) {
@@ -27,14 +25,12 @@ export default function AdUnit({ slot, format = 'auto', className = '' }: AdUnit
     }
   }, [])
 
-  if (!publisherId) return null
-
   return (
     <div className={`overflow-hidden ${className}`}>
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
-        data-ad-client={publisherId}
+        data-ad-client="ca-pub-5200581180131547"
         data-ad-slot={slot}
         data-ad-format={format}
         data-full-width-responsive="true"
