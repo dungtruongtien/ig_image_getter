@@ -6,19 +6,27 @@ export interface InstagramMetadata {
   description: string
 }
 
+function toFullResUrl(raw: string): string {
+  // Decode HTML entities (Instagram encodes & as &amp; in meta tags)
+  const decoded = raw.replaceAll('&amp;', '&')
+  try {
+    const url = new URL(decoded)
+    // Remove the `stp` param which forces a crop + resize (e.g. s640x640, c288.0.864...)
+    // Without it, Instagram CDN serves the original full-resolution image
+    url.searchParams.delete('stp')
+    return url.toString()
+  } catch {
+    return decoded
+  }
+}
+
 export async function fetchInstagramOgImage(url: string): Promise<InstagramMetadata> {
   const res = await fetch(url, {
     headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+      // Must use a crawler UA — Instagram only injects og:image for crawlers, not browsers
+      'User-Agent': 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uagent.php)',
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       'Accept-Language': 'en-US,en;q=0.9',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Cache-Control': 'no-cache',
-      'Pragma': 'no-cache',
-      'Sec-Fetch-Dest': 'document',
-      'Sec-Fetch-Mode': 'navigate',
-      'Sec-Fetch-Site': 'none',
-      'Upgrade-Insecure-Requests': '1',
     },
     redirect: 'follow',
   })
@@ -29,28 +37,27 @@ export async function fetchInstagramOgImage(url: string): Promise<InstagramMetad
 
   const html = await res.text()
 
-  // Check for login wall
-  if (html.includes('login') && html.includes('You must log in') ||
-      html.includes('"requiresLogin":true') ||
-      (html.includes('og:image') === false && html.includes('login_wall'))) {
+  if (html.includes('"requiresLogin":true') || html.includes('login_required')) {
     throw new Error('Instagram requires login to view this post. Only public posts are supported.')
   }
 
   const $ = cheerio.load(html)
 
-  const imageUrl = $('meta[property="og:image"]').attr('content') || ''
-  const title = $('meta[property="og:title"]').attr('content') ||
-                $('title').text() ||
-                'Instagram Post'
+  const rawImage = $('meta[property="og:image"]').attr('content') || ''
+  const title =
+    $('meta[property="og:title"]').attr('content') ||
+    $('title').text() ||
+    'Instagram Post'
   const description = $('meta[property="og:description"]').attr('content') || ''
 
-  if (!imageUrl) {
-    // Check if it's a login wall
-    if (html.includes('Log in') || html.includes('Sign up') || html.toLowerCase().includes('login')) {
+  if (!rawImage) {
+    if (html.includes('Log in') || html.toLowerCase().includes('login')) {
       throw new Error('Instagram returned a login page. This post may be private or require authentication.')
     }
     throw new Error('Could not extract image from this Instagram post. The post may be private or the URL may be invalid.')
   }
+
+  const imageUrl = toFullResUrl(rawImage)
 
   return { imageUrl, title, description }
 }
