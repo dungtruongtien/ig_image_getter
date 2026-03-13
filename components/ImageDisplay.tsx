@@ -1,13 +1,12 @@
 'use client'
 
 interface ImageDisplayProps {
-  imageUrl: string      // proxy URL for display
-  originalUrl: string   // direct CDN URL for download
+  imageUrl: string   // proxy URL for both display and download
   title: string
   onReset: () => void
 }
 
-export default function ImageDisplay({ imageUrl, originalUrl, title, onReset }: ImageDisplayProps) {
+export default function ImageDisplay({ imageUrl, title, onReset }: ImageDisplayProps) {
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="w-full overflow-hidden rounded-xl shadow-lg">

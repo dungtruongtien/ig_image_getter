@@ -20,7 +20,6 @@ export default function AppClient({ siteKey }: { siteKey: string }) {
   const [stage, setStage] = useState<Stage>('input')
   const [meta, setMeta] = useState<PostMeta | null>(null)
   const [imageUrl, setImageUrl] = useState<string | null>(null)
-  const [originalUrl, setOriginalUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -57,7 +56,6 @@ export default function AppClient({ siteKey }: { siteKey: string }) {
       const data = await res.json()
       if (!res.ok) { setError(data.error || 'Verification failed'); return }
       setImageUrl(data.imageUrl)
-      setOriginalUrl(data.originalUrl)
       setStage('revealed')
     } catch {
       setError('Network error. Please try again.')
@@ -70,7 +68,6 @@ export default function AppClient({ siteKey }: { siteKey: string }) {
     setStage('input')
     setMeta(null)
     setImageUrl(null)
-    setOriginalUrl(null)
     setError(null)
     setLoading(false)
   }
@@ -127,8 +124,8 @@ export default function AppClient({ siteKey }: { siteKey: string }) {
             />
           )}
 
-          {stage === 'revealed' && imageUrl && originalUrl && meta && (
-            <ImageDisplay imageUrl={imageUrl} originalUrl={originalUrl} title={meta.title} onReset={handleReset} />
+          {stage === 'revealed' && imageUrl && meta && (
+            <ImageDisplay imageUrl={imageUrl} title={meta.title} onReset={handleReset} />
           )}
         </div>
 

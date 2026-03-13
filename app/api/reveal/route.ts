@@ -48,5 +48,5 @@ export async function POST(req: NextRequest) {
   // bypassing Instagram CDN hotlink protection (direct browser requests get 403)
   const proxyUrl = `/api/image?url=${encodeURIComponent(imageUrl)}`
 
-  return NextResponse.json({ imageUrl: proxyUrl, originalUrl: imageUrl })
+  return NextResponse.json({ imageUrl: proxyUrl })
 }
