@@ -19,11 +19,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://instadown.co'
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Instagram Image Viewer — View & Download Public Instagram Photos',
-    template: '%s | Instagram Image Viewer',
+    default: 'Instagram Image Viewer — Free Photo Downloader',
+    template: '%s | InstaDown',
   },
   description:
-    'Instantly view and download images from any public Instagram post. Paste the post URL and reveal the full-resolution photo in one click. Free, fast, no login required.',
+    'View and download full-resolution photos from public Instagram posts. Paste the URL, verify, and save the image instantly. Free, no login needed.',
   keywords: [
     'instagram image viewer',
     'instagram photo viewer',
@@ -33,8 +33,11 @@ export const metadata: Metadata = {
     'instagram post image',
     'instagram picture viewer',
   ],
-  authors: [{ name: 'Instagram Image Viewer' }],
-  creator: 'Instagram Image Viewer',
+  authors: [{ name: 'InstaDown' }],
+  creator: 'InstaDown',
+  icons: {
+    apple: '/apple-touch-icon.png',
+  },
   robots: {
     index: true,
     follow: true,
@@ -46,17 +49,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteUrl,
-    siteName: 'Instagram Image Viewer',
-    title: 'Instagram Image Viewer — View & Download Public Instagram Photos',
+    siteName: 'InstaDown',
+    title: 'Instagram Image Viewer — Free Photo Downloader',
     description:
-      'Instantly view and download images from any public Instagram post. Free, fast, no login required.',
+      'View and download full-resolution photos from public Instagram posts. Free, no login needed.',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Instagram Image Viewer — View & Download Public Instagram Photos',
+    title: 'Instagram Image Viewer — Free Photo Downloader',
     description:
-      'Instantly view and download images from any public Instagram post. Free, fast, no login required.',
+      'View and download full-resolution photos from public Instagram posts. Free, no login needed.',
   },
 }
 
