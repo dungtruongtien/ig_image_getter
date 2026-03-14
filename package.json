@@ -15,6 +15,10 @@
     "react-google-recaptcha": "^3.1.0",
     "cheerio": "^1.0.0"
   },
+  "engines": {
+    "node": ">=20.0.0 <22.0.0",
+    "npm": ">=10.0.0"
+  },
   "devDependencies": {
     "typescript": "^5",
     "@types/node": "^20",
