@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     'instagram video downloader',
   ],
   alternates: {
-    canonical: '/insta-reel',
+    canonical: '/instagram-reel-downloader',
   },
   openGraph: {
     type: 'website',
-    url: `${siteUrl}/insta-reel`,
+    url: `${siteUrl}/instagram-reel-downloader`,
     siteName: 'InstaDown',
     title: 'Instagram Reels Downloader – Download Reels Free Online',
     description:
@@ -72,7 +72,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'InstaDown – Instagram Reels Downloader',
-    url: `${siteUrl}/insta-reel`,
+    url: `${siteUrl}/instagram-reel-downloader`,
     description: 'Free online Instagram Reels downloader. Download full-quality Reels from any public Instagram account — no login, no watermark, no app required.',
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Any',
@@ -94,7 +94,7 @@ const jsonLd = [
         '@type': 'HowToStep',
         position: 2,
         name: 'Paste the URL into InstaDown',
-        text: 'Go to instadown.co/insta-reel, paste the Reel URL into the input field, and click the Fetch button.',
+        text: 'Go to instadown.co/instagram-reel-downloader, paste the Reel URL into the input field, and click the Fetch button.',
       },
       {
         '@type': 'HowToStep',
@@ -213,9 +213,9 @@ export default function InstaReelPage() {
           {/* Footer */}
           <footer className="mt-12 border-t border-gray-200 pt-6">
             <nav className="flex flex-wrap justify-center gap-4 text-xs text-gray-500 mb-3">
-              <a href="/insta-photo" className="hover:text-gray-700">Instagram Photo</a>
-              <a href="/insta-reel" className="hover:text-gray-700">Instagram Reels</a>
-              <a href="/fb-reel" className="hover:text-gray-700">Facebook Reels</a>
+              <a href="/instagram-photo-downloader" className="hover:text-gray-700">Instagram Photo</a>
+              <a href="/instagram-reel-downloader" className="hover:text-gray-700">Instagram Reels</a>
+              <a href="/facebook-video-downloader" className="hover:text-gray-700">Facebook Reels</a>
               <a href="/sitemap.xml" className="hover:text-gray-700">Sitemap</a>
               <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700">Instagram</a>
             </nav>

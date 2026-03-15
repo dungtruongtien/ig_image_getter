@@ -1,2 +1,2 @@
-export { default } from '@/app/insta-photo/page'
-export { metadata } from '@/app/insta-photo/page'
+export { default } from '@/app/instagram-photo-downloader/page'
+export { metadata } from '@/app/instagram-photo-downloader/page'

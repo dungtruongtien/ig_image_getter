@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
 export default function ReelsPage() {
-  redirect('/insta-reel')
+  redirect('/instagram-reel-downloader')
 }

@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     'download photos from instagram',
   ],
   alternates: {
-    canonical: '/insta-photo',
+    canonical: '/instagram-photo-downloader',
   },
   openGraph: {
     type: 'website',
-    url: `${siteUrl}/insta-photo`,
+    url: `${siteUrl}/instagram-photo-downloader`,
     siteName: 'InstaDown',
     title: 'Instagram Photo Downloader – Download Instagram Photos Free',
     description:
@@ -86,7 +86,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'InstaDown – Instagram Photo Downloader',
-    url: `${siteUrl}/insta-photo`,
+    url: `${siteUrl}/instagram-photo-downloader`,
     description: 'Free online Instagram photo downloader. Download full-resolution photos from any public Instagram post — no login, no watermark, no app required.',
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Any',
@@ -116,7 +116,7 @@ const jsonLd = [
         '@type': 'HowToStep',
         position: 2,
         name: 'Paste the URL into InstaDown',
-        text: 'Go to instadown.co/insta-photo, paste the Instagram post URL into the input field, and click the Fetch button.',
+        text: 'Go to instadown.co/instagram-photo-downloader, paste the Instagram post URL into the input field, and click the Fetch button.',
       },
       {
         '@type': 'HowToStep',
@@ -228,7 +228,7 @@ export default function InstaPhotoPage() {
               {[
                 'Open the Instagram app on your phone and navigate to the public post you want to download.',
                 'Tap the three-dot menu (⋯) at the top-right corner of the post and select <strong>Copy Link</strong>.',
-                'Open any browser on your phone (Chrome, Safari, Firefox) and go to <strong>instadown.co/insta-photo</strong>.',
+                'Open any browser on your phone (Chrome, Safari, Firefox) and go to <strong>instadown.co/instagram-photo-downloader</strong>.',
                 'Paste the copied link into the input field and tap <strong>Fetch</strong>.',
                 'Complete the quick verification, then tap <strong>Download Image</strong> to save the photo to your phone\'s camera roll or downloads folder.',
               ].map((step, i) => (
@@ -250,7 +250,7 @@ export default function InstaPhotoPage() {
               {[
                 'Open your browser and go to <strong>instagram.com</strong>. Navigate to the public post you want to download.',
                 'Copy the URL from the browser address bar (e.g. <em>instagram.com/p/XXXXXX/</em>).',
-                'Open a new tab and go to <strong>instadown.co/insta-photo</strong>.',
+                'Open a new tab and go to <strong>instadown.co/instagram-photo-downloader</strong>.',
                 'Paste the Instagram post URL into the input field and click <strong>Fetch</strong>.',
                 'Complete the CAPTCHA verification, then click <strong>Download Image</strong>. The photo will be saved to your Downloads folder at full resolution.',
               ].map((step, i) => (
@@ -329,9 +329,9 @@ export default function InstaPhotoPage() {
           {/* Footer */}
           <footer className="mt-12 border-t border-gray-200 pt-6">
             <nav className="flex flex-wrap justify-center gap-4 text-xs text-gray-500 mb-3">
-              <a href="/insta-photo" className="hover:text-gray-700">Instagram Photo</a>
-              <a href="/insta-reel" className="hover:text-gray-700">Instagram Reels</a>
-              <a href="/fb-reel" className="hover:text-gray-700">Facebook Reels</a>
+              <a href="/instagram-photo-downloader" className="hover:text-gray-700">Instagram Photo</a>
+              <a href="/instagram-reel-downloader" className="hover:text-gray-700">Instagram Reels</a>
+              <a href="/facebook-video-downloader" className="hover:text-gray-700">Facebook Reels</a>
               <a href="/sitemap.xml" className="hover:text-gray-700">Sitemap</a>
               <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700">Instagram</a>
             </nav>
