@@ -149,7 +149,7 @@ export default function Home() {
           </p>
 
           {/* How to download — general */}
-          <section className="mt-16 max-w-2xl mx-auto" aria-labelledby="how-to-download">
+          <section className="mt-16 max-w-2xl md:max-w-4xl mx-auto" aria-labelledby="how-to-download">
             <h2 id="how-to-download" className="text-xl font-bold text-gray-900 mb-4 text-center">How to Download Instagram Photos</h2>
             <p className="text-sm text-gray-700 text-center mb-6">
               Downloading photos from any public Instagram post takes only a few seconds. Follow these three steps to save any Instagram photo to your device for free.

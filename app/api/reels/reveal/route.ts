@@ -41,8 +41,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Verification failed. Please try again.' }, { status: 403 })
   }
 
-  const proxyUrl = `/api/video?url=${encodeURIComponent(session.imageUrl)}`
+  const videoUrl = session.imageUrl
   deleteSession(sessionId)
 
-  return NextResponse.json({ videoUrl: proxyUrl })
+  return NextResponse.json({ videoUrl })
 }

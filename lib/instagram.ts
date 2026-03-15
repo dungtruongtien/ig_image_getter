@@ -114,6 +114,25 @@ export interface InstagramReelMetadata {
   description: string
 }
 
+/** Decode a raw URL string extracted from Instagram's embed page JSON/HTML */
+function decodeInstagramUrl(raw: string): string {
+  const decoded = raw
+    .replace(/\\\\/g, '\\')      // \\ → \  (must come first so \/ step works correctly)
+    .replace(/\\\//g, '/')       // \/ → /
+    .replace(/\\u0026/gi, '&')   // \u0026 → &
+    .replaceAll('&amp;', '&')    // HTML entity decoding
+
+  // Collapse duplicate slashes in the path (e.g. //o1//v → /o1/v)
+  // while keeping the protocol's // intact.
+  try {
+    const parsed = new URL(decoded)
+    parsed.pathname = parsed.pathname.replace(/\/\/+/g, '/')
+    return parsed.toString()
+  } catch {
+    return decoded
+  }
+}
+
 async function fetchEmbedVideo(reelUrl: string): Promise<string> {
   const cleanUrl = reelUrl.replace(/[?#].*$/, '').replace(/\/?$/, '/')
   const embedUrl = cleanUrl + 'embed/'
@@ -138,7 +157,7 @@ async function fetchEmbedVideo(reelUrl: string): Promise<string> {
   $('video, source').each((_, el) => {
     const src = $(el).attr('src') || ''
     if (src.includes('fbcdn') || src.includes('cdninstagram')) {
-      videoUrl = src.replaceAll('&amp;', '&')
+      videoUrl = decodeInstagramUrl(src)
       return false
     }
   })
@@ -151,24 +170,21 @@ async function fetchEmbedVideo(reelUrl: string): Promise<string> {
       // Pattern A: plain JSON  →  "video_url":"https://..."
       const plainMatch = text.match(/"video_url"\s*:\s*"([^"]+)"/)
       if (plainMatch) {
-        videoUrl = plainMatch[1].replace(/\\u0026/g, '&').replace(/\\\//g, '/')
+        videoUrl = decodeInstagramUrl(plainMatch[1])
         return false
       }
 
       // Pattern B: escaped JSON inside JS string  →  \"video_url\":\"https:\\/\\/...\"
       const escapedMatch = text.match(/\\"video_url\\":\s*\\"((?:[^"\\]|\\.)*?)\\"/)
       if (escapedMatch) {
-        videoUrl = escapedMatch[1]
-          .replace(/\\\//g, '/')      // \/ → /
-          .replace(/\\u0026/g, '&')   // \u0026 → &
-          .replace(/\\\\/g, '\\')     // \\ → \
+        videoUrl = decodeInstagramUrl(escapedMatch[1])
         return false
       }
 
       // Pattern C: contentUrl in plain JSON
       const contentMatch = text.match(/"contentUrl"\s*:\s*"([^"]+)"/)
       if (contentMatch) {
-        videoUrl = contentMatch[1].replace(/\\u0026/g, '&').replace(/\\\//g, '/')
+        videoUrl = decodeInstagramUrl(contentMatch[1])
         return false
       }
     })
