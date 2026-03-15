@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'InstaDown' }],
   creator: 'InstaDown',
   icons: {
+    icon: '/icon.svg',
     apple: '/apple-touch-icon.png',
   },
   robots: {
@@ -76,6 +77,10 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5200581180131547"
           crossOrigin="anonymous"
           strategy="beforeInteractive"
+        />
+        <Script
+          src="https://acscdn.com/script/aclib.js"
+          strategy="afterInteractive"
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

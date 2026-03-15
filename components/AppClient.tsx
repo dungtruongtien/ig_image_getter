@@ -20,10 +20,18 @@ export default function AppClient({ siteKey }: { siteKey: string }) {
   const [stage, setStage] = useState<Stage>('input')
   const [meta, setMeta] = useState<PostMeta | null>(null)
   const [imageUrl, setImageUrl] = useState<string | null>(null)
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const handleUrlSubmit = async (url: string) => {
+    // Fire AdCash interstitial — shows as overlay, user dismisses and stays on page
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (typeof window !== 'undefined' && (window as any).aclib) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ;(window as any).aclib.runAutoTag({ zoneId: 'a5fglb9yw0' })
+    }
+
     setLoading(true)
     setError(null)
     try {
@@ -56,6 +64,7 @@ export default function AppClient({ siteKey }: { siteKey: string }) {
       const data = await res.json()
       if (!res.ok) { setError(data.error || 'Verification failed'); return }
       setImageUrl(data.imageUrl)
+      setDownloadUrl(data.downloadUrl)
       setStage('revealed')
     } catch {
       setError('Network error. Please try again.')
@@ -68,6 +77,7 @@ export default function AppClient({ siteKey }: { siteKey: string }) {
     setStage('input')
     setMeta(null)
     setImageUrl(null)
+    setDownloadUrl(null)
     setError(null)
     setLoading(false)
   }
@@ -125,7 +135,7 @@ export default function AppClient({ siteKey }: { siteKey: string }) {
           )}
 
           {stage === 'revealed' && imageUrl && meta && (
-            <ImageDisplay imageUrl={imageUrl} title={meta.title} onReset={handleReset} />
+            <ImageDisplay imageUrl={imageUrl} downloadUrl={downloadUrl ?? imageUrl} title={meta.title} onReset={handleReset} />
           )}
         </div>
 

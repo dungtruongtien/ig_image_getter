@@ -37,16 +37,13 @@ export async function POST(req: NextRequest) {
   }
 
   const valid = await verifyRecaptcha(captchaToken)
+
   if (!valid) {
     return NextResponse.json({ error: 'Verification failed. Please try again.' }, { status: 403 })
   }
 
-  const { imageUrl } = session
+  const proxyUrl = `/api/image?url=${encodeURIComponent(session.imageUrl)}`
   deleteSession(sessionId)
 
-  // Return a proxy URL so the browser loads the image through our server,
-  // bypassing Instagram CDN hotlink protection (direct browser requests get 403)
-  const proxyUrl = `/api/image?url=${encodeURIComponent(imageUrl)}`
-
-  return NextResponse.json({ imageUrl: proxyUrl })
+  return NextResponse.json({ imageUrl: proxyUrl, downloadUrl: proxyUrl })
 }
