@@ -19,19 +19,22 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://instadown.co'
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Instagram Image Viewer — Free Photo Downloader',
+    default: 'Instagram Photo Downloader – Download Instagram Photos Free Online',
     template: '%s | InstaDown',
   },
   description:
-    'View and download full-resolution photos from public Instagram posts. Paste the URL, verify, and save the image instantly. Free, no login needed.',
+    'Download Instagram photos free online with InstaDown. Save full-resolution photos from any public Instagram post instantly — no login, no watermark, no app required. Works on mobile & PC.',
   keywords: [
+    'instagram photo downloader',
+    'download instagram photos',
+    'instagram image downloader',
+    'instagram photo download',
+    'save instagram photos',
+    'instagram picture downloader',
+    'download instagram images free',
+    'instagram photo downloader online',
     'instagram image viewer',
     'instagram photo viewer',
-    'instagram image downloader',
-    'view instagram photos',
-    'download instagram images',
-    'instagram post image',
-    'instagram picture viewer',
   ],
   authors: [{ name: 'InstaDown' }],
   creator: 'InstaDown',
@@ -51,16 +54,16 @@ export const metadata: Metadata = {
     type: 'website',
     url: siteUrl,
     siteName: 'InstaDown',
-    title: 'Instagram Image Viewer — Free Photo Downloader',
+    title: 'Instagram Photo Downloader – Download Instagram Photos Free Online',
     description:
-      'View and download full-resolution photos from public Instagram posts. Free, no login needed.',
+      'Download full-resolution Instagram photos from any public post for free. No login, no watermark, no app required. Works on mobile & PC.',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Instagram Image Viewer — Free Photo Downloader',
+    title: 'Instagram Photo Downloader – Download Instagram Photos Free Online',
     description:
-      'View and download full-resolution photos from public Instagram posts. Free, no login needed.',
+      'Download full-resolution Instagram photos from any public post for free. No login, no watermark, no app required. Works on mobile & PC.',
   },
 }
 
