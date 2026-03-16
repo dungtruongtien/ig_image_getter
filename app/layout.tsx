@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -15,6 +16,13 @@ const geistMono = localFont({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://instadown.co'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#7c3aed',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -38,6 +46,16 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'InstaDown' }],
   creator: 'InstaDown',
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'InstaDown',
+  },
   icons: {
     icon: '/icon.svg',
     apple: '/apple-touch-icon.png',
@@ -79,15 +97,12 @@ export default function RootLayout({
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5200581180131547"
           crossOrigin="anonymous"
-          strategy="beforeInteractive"
-        />
-        <Script
-          src="https://acscdn.com/script/aclib.js"
           strategy="afterInteractive"
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
