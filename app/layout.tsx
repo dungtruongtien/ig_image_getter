@@ -16,6 +16,7 @@ const geistMono = localFont({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://instadown.co'
+const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -72,16 +73,25 @@ export const metadata: Metadata = {
     type: 'website',
     url: siteUrl,
     siteName: 'InstaDown',
-    title: 'Instagram Photo Downloader – Download Instagram Photos Free Online',
+    title: 'InstaDown – Free Instagram Downloader | Photos, Reels & Facebook Videos',
     description:
-      'Download full-resolution Instagram photos from any public post for free. No login, no watermark, no app required. Works on mobile & PC.',
+      'Download Instagram photos, Reels, and Facebook videos for free. No login, no watermark, no app required. Works on mobile & PC.',
     locale: 'en_US',
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: 'InstaDown – Free Instagram Downloader',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Instagram Photo Downloader – Download Instagram Photos Free Online',
+    title: 'InstaDown – Free Instagram Downloader | Photos, Reels & Facebook Videos',
     description:
-      'Download full-resolution Instagram photos from any public post for free. No login, no watermark, no app required. Works on mobile & PC.',
+      'Download Instagram photos, Reels, and Facebook videos for free. No login, no watermark, no app required.',
+    images: [`${siteUrl}/opengraph-image`],
   },
 }
 
@@ -103,6 +113,17 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Analytics />
+        {gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

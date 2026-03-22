@@ -17,6 +17,12 @@ export const metadata: Metadata = {
     'instagram image downloader',
     'instagram downloader',
     'download photos from instagram',
+    'instagram picture saver',
+    'download ig photos',
+    'save instagram post',
+    'instagram photo grabber',
+    'instagram image saver',
+    'ig photo downloader',
   ],
   alternates: {
     canonical: '/instagram-photo-downloader',
@@ -29,12 +35,21 @@ export const metadata: Metadata = {
     description:
       'Download full-resolution photos from any public Instagram post for free. No login, no watermark, no app required.',
     locale: 'en_US',
+    images: [
+      {
+        url: `${siteUrl}/instagram-photo-downloader/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: 'Instagram Photo Downloader – Download Instagram Photos Free',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Instagram Photo Downloader – Download Instagram Photos Free',
     description:
       'Download full-resolution photos from any public Instagram post for free. No login, no watermark, no app required.',
+    images: [`${siteUrl}/instagram-photo-downloader/opengraph-image`],
   },
 }
 
@@ -134,6 +149,14 @@ const jsonLd = [
       name: q,
       acceptedAnswer: { '@type': 'Answer', text: a },
     })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Instagram Photo Downloader', item: `${siteUrl}/instagram-photo-downloader` },
+    ],
   },
 ]
 
@@ -326,9 +349,35 @@ export default function InstaPhotoPage() {
             </div>
           </section>
 
+          {/* Related tools */}
+          <section className="mt-12 max-w-2xl mx-auto" aria-labelledby="related-tools">
+            <h2 id="related-tools" className="text-xl font-bold text-gray-900 mb-4 text-center">More Free Download Tools</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <a href="/instagram-reel-downloader" className="flex gap-3 items-start bg-white rounded-xl border border-gray-100 shadow-sm p-4 hover:shadow-md transition-shadow">
+                <span className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-purple-100 text-purple-600">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </span>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">Instagram Reels Downloader</p>
+                  <p className="text-xs text-gray-600 mt-0.5">Save Instagram Reels videos in full quality — free, no watermark.</p>
+                </div>
+              </a>
+              <a href="/facebook-video-downloader" className="flex gap-3 items-start bg-white rounded-xl border border-gray-100 shadow-sm p-4 hover:shadow-md transition-shadow">
+                <span className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </span>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">Facebook Reels Downloader</p>
+                  <p className="text-xs text-gray-600 mt-0.5">Download Facebook Reels in full quality for free, no login needed.</p>
+                </div>
+              </a>
+            </div>
+          </section>
+
           {/* Footer */}
           <footer className="mt-12 border-t border-gray-200 pt-6">
             <nav className="flex flex-wrap justify-center gap-4 text-xs text-gray-500 mb-3">
+              <a href="/" className="hover:text-gray-700">Home</a>
               <a href="/instagram-photo-downloader" className="hover:text-gray-700">Instagram Photo</a>
               <a href="/instagram-reel-downloader" className="hover:text-gray-700">Instagram Reels</a>
               <a href="/facebook-video-downloader" className="hover:text-gray-700">Facebook Reels</a>

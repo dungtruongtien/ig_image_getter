@@ -19,6 +19,10 @@ export const metadata: Metadata = {
     'download reels from facebook',
     'facebook reels downloader online',
     'facebook video downloader',
+    'fb reels downloader',
+    'save facebook video',
+    'download fb reels',
+    'facebook reel saver',
   ],
   alternates: {
     canonical: '/facebook-video-downloader',
@@ -31,12 +35,21 @@ export const metadata: Metadata = {
     description:
       'Download full-quality Facebook Reels from any public account for free. No login, no watermark, no app required.',
     locale: 'en_US',
+    images: [
+      {
+        url: `${siteUrl}/facebook-video-downloader/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: 'Facebook Reels Downloader – Download Facebook Reels Free Online',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Facebook Reels Downloader – Download Facebook Reels Free Online',
     description:
       'Download full-quality Facebook Reels from any public account for free. No login, no watermark, no app required.',
+    images: [`${siteUrl}/facebook-video-downloader/opengraph-image`],
   },
 }
 
@@ -112,6 +125,14 @@ const jsonLd = [
       name: q,
       acceptedAnswer: { '@type': 'Answer', text: a },
     })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Facebook Reels Downloader', item: `${siteUrl}/facebook-video-downloader` },
+    ],
   },
 ]
 
@@ -196,6 +217,35 @@ export default function FbReelPage() {
             </ol>
           </section>
 
+          {/* Why use InstaDown */}
+          <section className="mt-12 max-w-2xl mx-auto" aria-labelledby="why-instadown-fb">
+            <h2 id="why-instadown-fb" className="text-xl font-bold text-gray-900 mb-3">Why Use InstaDown to Download Facebook Reels?</h2>
+            <ul className="space-y-3">
+              {[
+                { title: 'Full Original Quality', body: 'InstaDown downloads the highest-quality version of each Reel directly from Facebook\'s CDN — no re-encoding, no compression, no watermark.' },
+                { title: 'No Login Required', body: 'InstaDown never asks for your Facebook username or password. You do not need a Facebook account to use this tool.' },
+                { title: 'Works on All Devices', body: 'InstaDown is a web-based tool that works on iPhone, Android, Windows, Mac, and any device with a browser — no app installation required.' },
+                { title: 'Completely Free', body: 'InstaDown is 100% free with no hidden fees, no premium plans, and no download limits. Download as many public Facebook Reels as you need.' },
+              ].map(({ title, body }) => (
+                <li key={title} className="flex gap-3 bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+                  <span className="flex-shrink-0 text-green-500 font-bold text-base mt-0.5">✓</span>
+                  <span className="text-sm text-gray-700"><strong className="text-gray-900">{title}:</strong> {body}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {/* Safety section */}
+          <section className="mt-12 max-w-2xl mx-auto" aria-labelledby="fb-safe">
+            <h2 id="fb-safe" className="text-xl font-bold text-gray-900 mb-3">Is It Safe to Download Facebook Reels with InstaDown?</h2>
+            <p className="text-sm text-gray-700 mb-3">
+              Yes, InstaDown is completely safe to use. We never request your Facebook credentials, access your account, or store any personal information on our servers.
+            </p>
+            <p className="text-sm text-gray-700">
+              InstaDown only retrieves the publicly accessible video URL from a Facebook Reel and delivers it to your browser for download. No data is written to Facebook and no information about you is collected or stored.
+            </p>
+          </section>
+
           {/* FAQ */}
           <section className="mt-12 max-w-2xl mx-auto" aria-labelledby="faq-facebook-heading">
             <h2 id="faq-facebook-heading" className="text-xl font-bold text-gray-900 mb-4 text-center">Frequently Asked Questions</h2>
@@ -209,9 +259,35 @@ export default function FbReelPage() {
             </div>
           </section>
 
+          {/* Related tools */}
+          <section className="mt-12 max-w-2xl mx-auto" aria-labelledby="related-tools-fb">
+            <h2 id="related-tools-fb" className="text-xl font-bold text-gray-900 mb-4 text-center">More Free Download Tools</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <a href="/instagram-photo-downloader" className="flex gap-3 items-start bg-white rounded-xl border border-gray-100 shadow-sm p-4 hover:shadow-md transition-shadow">
+                <span className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-purple-100 text-purple-600">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </span>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">Instagram Photo Downloader</p>
+                  <p className="text-xs text-gray-600 mt-0.5">Download full-resolution Instagram photos for free, no login needed.</p>
+                </div>
+              </a>
+              <a href="/instagram-reel-downloader" className="flex gap-3 items-start bg-white rounded-xl border border-gray-100 shadow-sm p-4 hover:shadow-md transition-shadow">
+                <span className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-purple-100 text-purple-600">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </span>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">Instagram Reels Downloader</p>
+                  <p className="text-xs text-gray-600 mt-0.5">Save Instagram Reels videos in full quality — free, no watermark.</p>
+                </div>
+              </a>
+            </div>
+          </section>
+
           {/* Footer */}
           <footer className="mt-12 border-t border-gray-200 pt-6">
             <nav className="flex flex-wrap justify-center gap-4 text-xs text-gray-500 mb-3">
+              <a href="/" className="hover:text-gray-700">Home</a>
               <a href="/instagram-photo-downloader" className="hover:text-gray-700">Instagram Photo</a>
               <a href="/instagram-reel-downloader" className="hover:text-gray-700">Instagram Reels</a>
               <a href="/facebook-video-downloader" className="hover:text-gray-700">Facebook Reels</a>
